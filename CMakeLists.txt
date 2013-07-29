@@ -44,7 +44,8 @@ SET(PYAPPS_DIR ${PYOSSIM_DIR}/apps/)
 
 SUBDIRS(swig)
 
-
+MESSAGE("Using OSSIM headers installed at ${OSSIM_INCLUDES}")
+MESSAGE("Using OSSIM libraries installed at ${OSSIM_LIBRARIES}")
 MESSAGE("PYOSSIM_DIR=${PYOSSIM_DIR}")
 MESSAGE("PyOSSIM libraries be installed at ${PYOSSIM_LIB_DIR}")
 MESSAGE("PyOSSIM apps will be installed at ${PYAPPS_DIR}")
