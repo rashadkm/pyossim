@@ -94,9 +94,9 @@ def TestNumpyWrite(imgname):
     #imdata.setHeight(y)  
     imdata.initialize()
 
-    np_array = numpy.empty([y,x])
+    np_array = numpy.empty([y,x],dtype=np.float32)
     np_array.fill(180.0)
-    
+
     WriteArrayToImageData(imdata,np_array,0)
     outfile = "out_from_w.jpg"
     WriteImageDataToFile(imdata,outfile)

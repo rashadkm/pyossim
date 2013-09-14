@@ -12,6 +12,7 @@
 
 
 
+
 %init %{
     import_array();
 %}
@@ -107,12 +108,12 @@ int ReadImageDataNumPy(const ossimImageData *tile,ossimScalarType stype, int ban
 %feature( "kwargs" ) WriteImageDataNumPy;
 %inline %{
 
-int WriteImageDataNumPy(ossimImageData *tile, ossimScalarType stype, int band, PyObject *psArray)
+int WriteImageDataNumPy(ossimImageData *tile, int stype, int band, PyObject *psArray)
 {
 
    int size = 0;
 
-    if( stype == OSSIM_UINT8 || stype == OSSIM_SINT8)
+    if( stype == 112)
     {    
         ossim_uint8 *buffer = (ossim_uint8*) tile->getBuf(0);
         size = PyList_Size(psArray);
@@ -124,7 +125,7 @@ int WriteImageDataNumPy(ossimImageData *tile, ossimScalarType stype, int band, P
         }
     }
 
-    else if( stype == OSSIM_UINT16 || stype == OSSIM_SINT16 || stype == OSSIM_USHORT11)
+    else if( stype == 113)
     {    
         ossim_uint16 *buffer = (ossim_uint16*) tile->getBuf(band);
         size = PyList_Size(psArray);
@@ -136,7 +137,7 @@ int WriteImageDataNumPy(ossimImageData *tile, ossimScalarType stype, int band, P
         }
     }
 
-    else if( stype == OSSIM_UINT32 || stype == OSSIM_SINT32 )
+    else if( stype == 115 )
     {    
         ossim_uint32 *buffer = (ossim_uint32*) tile->getBuf(band);
         size = PyList_Size(psArray);
@@ -148,7 +149,7 @@ int WriteImageDataNumPy(ossimImageData *tile, ossimScalarType stype, int band, P
         }
     }
 
-    else if( stype == OSSIM_FLOAT32 )
+    else if( stype ==111 )
     {    
         ossim_float32 *buffer = (ossim_float32*) tile->getBuf(0);
         size = PyList_Size(psArray);
@@ -159,7 +160,7 @@ int WriteImageDataNumPy(ossimImageData *tile, ossimScalarType stype, int band, P
             buffer[i] = (ossim_float32)data;
         }
     }
-    else if( stype == OSSIM_FLOAT64 )
+    else if( stype == 114 )
     {    
         ossim_float64 *buffer = (ossim_float64*) tile->getBuf(band);
         size = PyList_Size(psArray);
@@ -298,8 +299,23 @@ def WriteArrayToImageData( tile, array, band=0):
 
     buf_list = []
 
-    ossim_dtype = tile.getScalarType()
-
+    #ossim_dtype = tile.getScalarType()
+    dtype = array.dtype
+    if dtype == 'float32':
+        ossim_dtype = 111
+    elif dtpye == 'uint8':
+        ossim_dtype = 112 #PYOSSIM_UINT8
+    elif dtpye == 'uint16':
+        ossim_dtype = 113 #PYOSSIM_UINT16
+    elif dtpye == 'float64':
+        ossim_dtype = 114 #PYOSSIM_FLOAT64        
+    elif dtpye == 'uint32':
+        ossim_dtype = 115 #PYOSSIM_UINT32
+    else:
+        ossim_dtype = 112 #PYOSSIM_UINT8
+        
+    
+    
     for a in array.flat:
         buf_list.append(a)
 
