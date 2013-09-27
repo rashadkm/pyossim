@@ -1,8 +1,8 @@
 /*-----------------------------------------------------------------------------
 Filename        : ossimErrorStatusInterface.i
-Author          : Vipul Raheja
+Author          : Vipul Raheja, Rashad M
 License         : See top level LICENSE.txt file.
-Description     : Contains SWIG-Python of class ossimObject
+Description     : Contains SWIG-Python of class ossimErrorStatusInterface
 -----------------------------------------------------------------------------*/
 
 %module pyossim
@@ -12,7 +12,6 @@ Description     : Contains SWIG-Python of class ossimObject
 #include <ossim/base/ossimConstants.h>
 #include <ossim/base/ossimRtti.h>
 #include <ossim/base/ossimErrorCodes.h>
-#include <ossim/base/ossimErrorStatusInterface.h>
 %}
 
 /* Handling operator */
@@ -20,6 +19,9 @@ Description     : Contains SWIG-Python of class ossimObject
 
 /* Handling the reserved function print */
 %rename(ossimErrorStatusInterface_print) ossimErrorStatusInterface::print;
+%rename(const_ossimErrorStatusInterface_getErrorStatus) ossimErrorStatusInterface::getErrorStatus() const;
+%rename(const_ossimErrorStatusInterface_getErrorStatusString) ossimErrorStatusInterface::getErrorStatusString() const;
+
 
 /* Wrapping the class */
 %include "ossim/base/ossimConstants.h"
