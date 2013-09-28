@@ -14,11 +14,12 @@
         
 #include <ossim/base/ossimId.h>
 #include <ossim/base/ossimConnectableObjectListener.h>
-#include <ossim/base/ossimConnectableContainerInterface.h>
 
 #include <ossim/imaging/ossimImageSource.h>
 
 %}
+
+%import "../base/ossimConnectableContainerInterface.i"
 
 %feature("notabstract") ossimImageChain;
 
@@ -29,6 +30,5 @@
 %import "ossim/base/ossimConstants.h"
 
 /* Wrapping class ossimImageChain */
-%include "ossim/base/ossimConnectableContainerInterface.h"
 %include "ossim/imaging/ossimImageChain.h"
 

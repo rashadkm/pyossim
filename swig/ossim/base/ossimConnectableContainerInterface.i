@@ -1,9 +1,5 @@
-/*-----------------------------------------------------------------------------
- * Filename        : ossimConnectableContainerInterface.i
- * Author          : Vipul Raheja
- * License         : See top level LICENSE.txt file.
- * Description     : Contains SWIG-Python of class ossimConnectableContainerInterface
- * -----------------------------------------------------------------------------*/
+/*-
+*/
 
 %module pyossim
 
@@ -14,13 +10,10 @@
 %rename(const_ossimConnectableContainerInterface_getObject) ossimConnectableContainerInterface::getObject() const;
 %rename(const_ossimConnectableContainerInterface_findAllObjectsOfType) ossimConnectableContainerInterface::findAllObjectsOfType(RTTItypeid const &,bool);
 
-%{
- void deleteAllChildren(){}
-%}
 
 #ifndef ossimConnectableContainerInterface_HEADER
 #define ossimConnectableContainerInterface_HEADER 1
-
+#define ossimConnectableContainerInterface_HEADER2 1
 #include <ossim/base/ossimConstants.h>
 #include <ossim/base/ossimRtti.h>
 #include <ossim/base/ossimId.h>
@@ -116,7 +109,6 @@ public:
     */
    virtual ossimConnectableObject* getConnectableObject(ossim_uint32 index)=0;
 
-   void deleteAllChildren(){}
    virtual void getChildren(std::vector<ossimConnectableObject*>& children,
                             bool immediateChildrenOnlyFlag)=0;
 protected:
@@ -125,3 +117,9 @@ TYPE_DATA
 };
 
 #endif
+
+
+%{
+ void deleteAllChildren(){}
+%}
+

@@ -14,7 +14,7 @@
 #include <ossim/base/ossimConstants.h>
 #include <ossim/base/ossimConnectableObject.h>
 #include <ossim/base/ossimConnectableObjectListener.h>
-#include <ossim/base/ossimConnectableContainerInterface.h>
+//#include <ossim/base/ossimConnectableContainerInterface.h>
 
 %}
 
@@ -23,6 +23,7 @@
 
 %rename(const_ossimConnectableContainer_getObject) ossimConnectableContainer::getObject() const;
 
+%include "../base/ossimConnectableContainerInterface.i"
 /* Wrapping class ossimConnectableContainer */
 %include "ossim/base/ossimConstants.h"
 %include "ossim/base/ossimConnectableContainer.h" 
