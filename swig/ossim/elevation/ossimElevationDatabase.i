@@ -51,6 +51,7 @@
 #include <ossim/base/ossimTimer.h>
 #include <vector>
 #include <map>
+
 class OSSIM_DLL ossimElevationDatabase : public ossimElevSource
 {
 public:
@@ -71,7 +72,11 @@ public:
 
    const ossimElevationDatabase& operator = (const ossimElevationDatabase& rhs);
       
-   virtual double getMeanSpacingMeters() const
+   virtual bool getAccuracyInfo(ossimElevationAccuracyInfo& /*info*/, const ossimGpt& /*gpt*/) const
+   {
+      return false;
+   }
+  virtual double getMeanSpacingMeters() const
    {
       return m_meanSpacing;
    }
@@ -94,12 +99,10 @@ public:
     *
     */
    virtual bool open(const ossimString& connectionString)=0;
+
    const ossimString& getConnectionString()const
    {
       return m_connectionString;
-   }
-   virtual void getOpenCellList(std::vector<ossimFilename>& /* list */) const
-   {
    }
 
    virtual bool loadState(const ossimKeywordlist& kwl, const char* prefix=0);
@@ -118,7 +121,10 @@ protected:
    ossim_float64              m_meanSpacing;
    
 TYPE_DATA
-};
+   
+}; // End: class ossimElevationDatabase
+
+
 /*
 class OSSIM_DLL ossimElevationCellDatabase : public ossimElevationDatabase
 {
