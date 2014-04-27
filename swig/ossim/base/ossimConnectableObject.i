@@ -33,5 +33,6 @@
 
 %rename(const_ossimConnectableObject_canConnectMyInputTo) ossimConnectableObject::canConnectMyInputTo(ossim_int32,ossimConnectableObject const *)const;
 
+%rename(__set__) ossimConnectableObject::operator=;
 
 %include "ossim/base/ossimConnectableObject.h"
